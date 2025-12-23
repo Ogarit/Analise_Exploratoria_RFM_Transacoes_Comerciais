@@ -1,115 +1,92 @@
-# Análise de Dados de Transações Comerciais
+# 🚀 Análise Exploratória de Dados de Transações Comerciais (EDA)
 
 ## Visão Geral
 
-Este projeto tem como objetivo realizar uma **análise exploratória de dados** (EDA) de transações comerciais fictícias. O conjunto de dados contém informações sobre transações, incluindo o número da fatura, código do item, descrição do item, quantidade comprada, data da fatura, preço unitário, ID do cliente, país e preço total.
+Este projeto realiza uma **Análise Exploratória de Dados (EDA)** detalhada em um conjunto de transações comerciais. O objetivo é transformar dados brutos de vendas em *insights* acionáveis para a gestão comercial, focando na compreensão do comportamento do cliente e na otimização estratégica.
 
-A análise envolve o **tratamento de dados**, **exploração de padrões** e a geração de **insights úteis** para entender o comportamento de compra dos clientes.
+### 📊 1. Contexto de Negócio
 
-## Estrutura do Notebook
+Este projeto simula um cenário de uma **empresa comercial de varejo (e-commerce ou atacado)**. A organização necessita aprofundar a compreensão sobre o comportamento de compra de seus clientes para melhorar sua **estratégia de vendas e relacionamento (CRM)**.
 
-### 1. **Importação das Bibliotecas**
+A análise lida com desafios comuns, como a identificação de clientes de alto valor, a compreensão da sazonalidade e a avaliação do impacto geográfico nas vendas, essenciais para **impulsionar o crescimento e a retenção**.
 
-Inicialmente, são importadas as bibliotecas necessárias para manipulação e análise dos dados.
+### 📌 2. Objetivo da Análise
 
-   ```python
-    import numpy as np
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-   ```
+O objetivo principal desta análise é **explorar, limpar e estruturar** os dados de transações para:
 
-### 2. **Carregamento dos Dados**
+1. **Identificar Padrões de Comportamento:** Mapear a distribuição de compras por cliente, item e localização geográfica.
+2. **Gerar Métricas Chave:** Criar *features* importantes, como o Preço Total (`TotalPrice`) por transação.
+3. **Apoiar Decisões Comerciais:** Fornecer *insights* claros que apoiem a segmentação de clientes, otimização de estoque e direcionamento de campanhas promocionais.
 
-Os dados são carregados de um arquivo CSV utilizando o `pandas`.
+### 🛠️ 3. Abordagem Analítica e Ferramentas Utilizadas
 
-   ```python
-    df = pd.read_csv('Data.csv', delimiter=',')
-    df.head()
-   ```
+As análises foram realizadas utilizando ferramentas padrão do ecossistema de Data Science em Python:
 
-### 3. **Limpeza dos Dados**
+* **Python (Pandas, NumPy):** Para carregamento, limpeza eficiente, padronização e manipulação dos dados, incluindo o tratamento de valores nulos e *outliers*.
+* **Matplotlib e Seaborn:** Para a criação de visualizações robustas que revelam padrões e tendências (distribuição de quantidade, preço e país).
+* **Jupyter Notebook:** Para documentação completa e garantia de reprodutibilidade do fluxo de trabalho.
 
-Realiza-se a remoção de espaços em branco das colunas e substituição de valores vazios por `NaN`.
+### 📈 4. Principais Insights
 
-   ```python
-    df.columns = [col.strip() for col in df.columns]
-    df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
-    df = df.applymap(lambda x: np.nan if x == '' else x)
-   ```
+A exploração detalhada dos dados revelou os seguintes padrões de negócio:
 
-### 4. **Análise Descritiva Inicial**
+* **Distribuição de Receita:** Foi identificado que uma pequena parcela de clientes concentra a maior parte da receita total (**Princípio de Pareto ou 80/20**), indicando a criticidade de estratégias de fidelização.
+* **Análise Geográfica:** Embora o volume de transações seja dominante em um país, outros países com menor frequência de compras apresentaram um **ticket médio (Average UnitPrice)** elevado, sugerindo mercados de alto valor.
+* **Itens de Alto Volume:** Certos itens são consistentemente comprados em grandes quantidades, classificando-os como *key products* que requerem atenção especial na **gestão de estoque e suprimentos**.
 
-A função `describe()` é utilizada para obter estatísticas descritivas das colunas numéricas do dataset.
+### 🎯 5. Possíveis Decisões de Negócio
 
-   ```python
-    df.describe()
-   ```
+Com base nos *insights* obtidos, a empresa pode implementar as seguintes ações estratégicas:
 
-### 5. **Exploração de Dados e Visualizações**
+* **Estratégias de Fidelização:** Criar programas de recompensas e atendimento premium **focados nos clientes de alto valor** identificados, visando maximizar a retenção.
+* **Campanhas de Segmentação:** Desenvolver campanhas promocionais e de expansão específicas para mercados geográficos (países) que demonstram alto ticket médio, priorizando o lucro sobre o volume.
+* **Otimização de Estoque:** Utilizar a análise de volume e frequência dos itens mais vendidos para otimizar os níveis de estoque e **prevenir rupturas**, melhorando a eficiência operacional.
 
-Foi utilizadas bibliotecas como `matplotlib` e `seaborn` para gerar gráficos e explorar padrões e tendências dos dados, como a distribuição de compras por cliente, por país, entre outros.
+## 🔧 Estrutura do Projeto e Execução
 
-### 6. **Tratamento de Valores Nulos**
+### Estrutura dos Dados
 
-Identifiquei e tratei valores nulos por meio de técnicas como a substituição por médias ou a exclusão de registros incompletos, conforme apropriado.
+O conjunto de dados contém as seguintes colunas essenciais:
 
-### 7. **Análise de Outliers**
+| Coluna | Descrição |
+| --- | --- |
+| **InvoiceNo** | Identificador Único da Transação/Fatura. |
+| **StockCode** | Código de Identificação do Produto (SKU). |
+| **Description** | Descrição do item comprado. |
+| **Quantity** | Quantidade de itens comprados na transação. |
+| **InvoiceDate** | Data e Hora da realização da transação. |
+| **UnitPrice** | Preço unitário do item. |
+| **CustomerID** | ID do Cliente que realizou a compra. |
+| **Country** | País de localização da transação. |
+| **TotalPrice** | Preço total (Calculado: `Quantity * UnitPrice`). |
 
-Detectaei e tratei valores atípicos que poderiam afetar a análise, garantindo uma interpretação mais precisa dos dados.
+### Requisitos e Instalação
 
-### 8. **Geração de Novas Features**
+* Python 3.x
+* Bibliotecas: `numpy`, `pandas`, `matplotlib`, `seaborn`
 
-Criei novas colunas a partir dos dados existentes, como o `TotalPrice`, calculado pela multiplicação da `Quantity` pelo `UnitPrice`.
+Instale as dependências necessárias com o seguinte comando:
 
-   ```python
-    df['TotalPrice'] = df['Quantity'] * df['UnitPrice']
-   ```
+```bash
+pip install numpy pandas matplotlib seaborn
 
-### 9. **Conclusão e Insights**
+```
 
-A análise resulta em insights sobre o comportamento de compra, como a identificação de clientes mais valiosos, os itens mais comprados, padrões de compra por país, entre outros. Além disso, são feitas recomendações para ações futuras, como melhorar o atendimento aos clientes mais frequentes.
-
-## Como Utilizar Este Notebook
-
-### 1. **Requisitos**
-
-- Python 3.x
-- Bibliotecas necessárias:
-  - `numpy`
-  - `pandas`
-  - `matplotlib`
-  - `seaborn`
-Você pode instalar as dependências necessárias com o seguinte comando:
-
-    ```bash
-    pip install numpy pandas matplotlib seaborn
-    ```
-
-### 2. **Execução**
+### Execução
 
 1. Clone o repositório:
-   ```bash
-   git clone https://github.com/Ogarit/Analise_Exploratoria_RFM_Transacoes_Comerciais.git
+```bash
+git clone https://github.com/Ogarit/Analise_Exploratoria_RFM_Transacoes_Comerciais.git
+
+```
+
+
 2. Navegue até o diretório do projeto:
-   ```bash
-   cd Analise_Exploratoria_RFM_Transacoes_Comerciais
+```bash
+cd Analise_Exploratoria_RFM_Transacoes_Comerciais
+
+```
+
+
 3. Coloque o arquivo de dados `Data.csv` no mesmo diretório que o notebook.
-4. Abra o Jupyter Notebook e execute todas as células sequencialmente.
-
-### 3. **Modificação**
-
-Este notebook é flexível e pode ser modificado para atender a necessidades específicas, como alteração de parâmetros de análise ou adição de novas seções.
-
-## Estrutura dos Dados
-
-O conjunto de dados contém as seguintes colunas:
-- **InvoiceNo**: Número da fatura (identificador único para cada transação).
-- **StockCode**: Código do item (identificador do produto).
-- **Description**: Descrição do item.
-- **Quantity**: Quantidade comprada do item.
-- **InvoiceDate**: Data da fatura (momento da transação).
-- **UnitPrice**: Preço unitário do item.
-- **CustomerID**: ID do cliente que realizou a compra.
-- **Country**: País onde o cliente está localizado.
-- **TotalPrice**: Preço total (calculado como `Quantity * UnitPrice`).
+4. Abra o Jupyter Notebook e execute as células sequencialmente para replicar a análise.
