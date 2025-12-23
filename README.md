@@ -1,92 +1,71 @@
-# 🚀 Análise Exploratória de Dados de Transações Comerciais (EDA)
+# 📊 Análise de Transações Comerciais
 
-## Visão Geral
+## 📊 Contexto de Negócio
 
-Este projeto realiza uma **Análise Exploratória de Dados (EDA)** detalhada em um conjunto de transações comerciais. O objetivo é transformar dados brutos de vendas em *insights* acionáveis para a gestão comercial, focando na compreensão do comportamento do cliente e na otimização estratégica.
+Este projeto simula um cenário de uma **empresa comercial** que realiza vendas recorrentes para clientes em diferentes regiões e deseja **entender o comportamento das transações realizadas ao longo do tempo**.
 
-### 📊 1. Contexto de Negócio
+A empresa enfrenta desafios comuns de áreas comerciais e de inteligência de negócios, como:
 
-Este projeto simula um cenário de uma **empresa comercial de varejo (e-commerce ou atacado)**. A organização necessita aprofundar a compreensão sobre o comportamento de compra de seus clientes para melhorar sua **estratégia de vendas e relacionamento (CRM)**.
+* Identificar padrões de compra dos clientes
+* Entender a concentração de vendas
+* Garantir a qualidade dos dados utilizados para tomada de decisão
+* Apoiar estratégias de vendas, retenção e relacionamento com clientes
 
-A análise lida com desafios comuns, como a identificação de clientes de alto valor, a compreensão da sazonalidade e a avaliação do impacto geográfico nas vendas, essenciais para **impulsionar o crescimento e a retenção**.
+Os dados representam **registros de transações comerciais**, incluindo volumes comprados, valores pagos, frequência de compras e informações geográficas, refletindo situações reais enfrentadas por equipes de análise de dados em ambientes corporativos.
 
-### 📌 2. Objetivo da Análise
+📌 *O foco deste projeto não é apenas analisar dados, mas sim estruturar informações confiáveis que possam apoiar decisões de negócio.*
 
-O objetivo principal desta análise é **explorar, limpar e estruturar** os dados de transações para:
+## 📌 Objetivo da Análise
 
-1. **Identificar Padrões de Comportamento:** Mapear a distribuição de compras por cliente, item e localização geográfica.
-2. **Gerar Métricas Chave:** Criar *features* importantes, como o Preço Total (`TotalPrice`) por transação.
-3. **Apoiar Decisões Comerciais:** Fornecer *insights* claros que apoiem a segmentação de clientes, otimização de estoque e direcionamento de campanhas promocionais.
+O objetivo desta análise é **explorar, limpar e estruturar os dados de transações comerciais** para:
 
-### 🛠️ 3. Abordagem Analítica e Ferramentas Utilizadas
+* Identificar padrões de comportamento dos clientes
+* Avaliar a consistência e qualidade dos registros transacionais
+* Gerar insights que apoiem **decisões comerciais**, como estratégias de retenção, segmentação de clientes e otimização de vendas
 
-As análises foram realizadas utilizando ferramentas padrão do ecossistema de Data Science em Python:
+A análise busca garantir que os dados estejam **confiáveis e prontos para uso estratégico**, servindo como base para análises futuras mais avançadas.
 
-* **Python (Pandas, NumPy):** Para carregamento, limpeza eficiente, padronização e manipulação dos dados, incluindo o tratamento de valores nulos e *outliers*.
-* **Matplotlib e Seaborn:** Para a criação de visualizações robustas que revelam padrões e tendências (distribuição de quantidade, preço e país).
-* **Jupyter Notebook:** Para documentação completa e garantia de reprodutibilidade do fluxo de trabalho.
+## 🛠️ Ferramentas Utilizadas
 
-### 📈 4. Principais Insights
+As análises foram realizadas utilizando:
 
-A exploração detalhada dos dados revelou os seguintes padrões de negócio:
+* **Python (Pandas, NumPy)** → limpeza, padronização, tratamento de valores inválidos e manipulação dos dados
+* **Matplotlib e Seaborn** → visualização de padrões, distribuição de valores e identificação de tendências
+* **Jupyter Notebook** → organização do fluxo analítico, documentação e reprodutibilidade do processo
 
-* **Distribuição de Receita:** Foi identificado que uma pequena parcela de clientes concentra a maior parte da receita total (**Princípio de Pareto ou 80/20**), indicando a criticidade de estratégias de fidelização.
-* **Análise Geográfica:** Embora o volume de transações seja dominante em um país, outros países com menor frequência de compras apresentaram um **ticket médio (Average UnitPrice)** elevado, sugerindo mercados de alto valor.
-* **Itens de Alto Volume:** Certos itens são consistentemente comprados em grandes quantidades, classificando-os como *key products* que requerem atenção especial na **gestão de estoque e suprimentos**.
+📌 *As ferramentas foram utilizadas como meio para responder perguntas de negócio, não como fim em si mesmas.*
 
-### 🎯 5. Possíveis Decisões de Negócio
+## 📈 Principais Insights
 
-Com base nos *insights* obtidos, a empresa pode implementar as seguintes ações estratégicas:
+* Foi identificado que os dados continham **registros inconsistentes**, como quantidades e preços negativos, além de faturas canceladas, evidenciando a necessidade de tratamento antes de qualquer análise estratégica.
 
-* **Estratégias de Fidelização:** Criar programas de recompensas e atendimento premium **focados nos clientes de alto valor** identificados, visando maximizar a retenção.
-* **Campanhas de Segmentação:** Desenvolver campanhas promocionais e de expansão específicas para mercados geográficos (países) que demonstram alto ticket médio, priorizando o lucro sobre o volume.
-* **Otimização de Estoque:** Utilizar a análise de volume e frequência dos itens mais vendidos para otimizar os níveis de estoque e **prevenir rupturas**, melhorando a eficiência operacional.
+* Uma parcela significativa dos registros inválidos estava associada a **cancelamentos de transações**, reforçando a importância de distinguir vendas efetivas de ajustes operacionais.
 
-## 🔧 Estrutura do Projeto e Execução
+* A limpeza dos dados reduziu ruídos e permitiu construir uma base mais confiável, essencial para análises de faturamento, comportamento de clientes e desempenho comercial.
 
-### Estrutura dos Dados
+* A ausência de informações completas de alguns clientes indicou limitações na rastreabilidade do comportamento individual, impactando análises mais aprofundadas de relacionamento.
 
-O conjunto de dados contém as seguintes colunas essenciais:
+📌 *Esses insights mostram que decisões baseadas em dados brutos poderiam levar a interpretações equivocadas sem um processo adequado de preparação.*
 
-| Coluna | Descrição |
-| --- | --- |
-| **InvoiceNo** | Identificador Único da Transação/Fatura. |
-| **StockCode** | Código de Identificação do Produto (SKU). |
-| **Description** | Descrição do item comprado. |
-| **Quantity** | Quantidade de itens comprados na transação. |
-| **InvoiceDate** | Data e Hora da realização da transação. |
-| **UnitPrice** | Preço unitário do item. |
-| **CustomerID** | ID do Cliente que realizou a compra. |
-| **Country** | País de localização da transação. |
-| **TotalPrice** | Preço total (Calculado: `Quantity * UnitPrice`). |
+## 🎯 Possíveis Decisões
 
-### Requisitos e Instalação
+Com base nos insights obtidos, seria possível:
 
-* Python 3.x
-* Bibliotecas: `numpy`, `pandas`, `matplotlib`, `seaborn`
+* **Padronizar processos de registro de transações**, reduzindo inconsistências e retrabalho operacional
+* **Separar claramente vendas efetivas de cancelamentos**, garantindo análises comerciais mais precisas
+* **Direcionar estratégias de fidelização** para clientes com maior volume e recorrência de compras
+* **Priorizar a qualidade dos dados** como etapa fundamental antes de análises financeiras ou preditivas
+* Utilizar a base tratada como **fundação para análises futuras**, como segmentação de clientes e avaliação de desempenho de vendas
 
-Instale as dependências necessárias com o seguinte comando:
+📌 *Aqui a análise deixa de ser técnica e passa a apoiar decisões reais de negócio.*
 
-```bash
-pip install numpy pandas matplotlib seaborn
+## 🧠 Considerações Finais
 
-```
+Este projeto demonstra um fluxo completo de **análise exploratória e preparação de dados**, com foco em qualidade, coerência e aplicação prática em cenários empresariais.
+O trabalho reforça a importância de alinhar análise de dados com **contexto de negócio**, garantindo que os resultados gerados sejam relevantes, interpretáveis e acionáveis.
 
-### Execução
+### ⭐ Status do Projeto
 
-1. Clone o repositório:
-```bash
-git clone https://github.com/Ogarit/Analise_Exploratoria_RFM_Transacoes_Comerciais.git
-
-```
-
-
-2. Navegue até o diretório do projeto:
-```bash
-cd Analise_Exploratoria_RFM_Transacoes_Comerciais
-
-```
-
-
-3. Coloque o arquivo de dados `Data.csv` no mesmo diretório que o notebook.
-4. Abra o Jupyter Notebook e execute as células sequencialmente para replicar a análise.
+✔ Análise exploratória concluída
+✔ Limpeza e padronização dos dados
+✔ Base pronta para análises estratégicas futuras
